@@ -1,103 +1,54 @@
-﻿# 🏡 EstateWise-AI: Real Estate Valuation & Market Intelligence
+# EstateWise AI
 
-[![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
-[![Streamlit](https://img.shields.io/badge/Streamlit-1.32%2B-red.svg)](https://streamlit.io/)
-[![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-1.4%2B-orange.svg)](https://scikit-learn.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+EstateWise AI is a Streamlit app that explores historical residential flat listings in India and estimates asking prices from property details.
 
-End-to-end machine learning solution for predicting property valuations and analyzing housing market trends using Python.
+## Features
 
----
+- Explore and clean property listing data
+- Train and evaluate regression models for asking price estimates
+- Try estimates in an interactive Streamlit app
 
-## 🚀 Project Overview
+## Setup on Windows
 
-**EstateWise-AI** is an advanced, Streamlit-powered web application designed to estimate residential flat asking prices and explore historical property data across Indian real estate markets. 
+Install Git and Python 3.13. From PowerShell, run these commands:
 
-This repository is structured so that development is **incremental**: every workflow stage is organized into clean Jupyter notebooks and modular scripts, allowing you to track data exploration, preprocessing, feature engineering, model training, and evaluation individually.
+```powershell
+git clone https://github.com/Sahelisau/EstateWise-AI.git
+cd EstateWise-AI
+py -3.13 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install --upgrade pip
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+```
 
----
+## Add the dataset
 
-## ✨ Key Features
+The dataset is not included in the source files. Download the [House Price dataset on Kaggle](https://www.kaggle.com/datasets/juhibhojani/house-price), create the folder below, and place the original archive there with this filename:
 
-* **Interactive Price Prediction:** User-friendly Streamlit interface allowing users to input property features (location, size, bedrooms, amenities) and get instant valuation estimates.
-* **Exploratory Data Analysis (EDA):** Comprehensive notebooks covering correlation heatmaps, price distributions, and geospatial trend insights.
-* **Robust Machine Learning Pipelines:** Built with optimized regression models (Random Forest, XGBoost) featuring rigorous cross-validation.
-* **Visual Performance Tracking:** Automated generation of residual plots, RMSE, and $R^2$ performance metrics.
+`data/raw/india_property_listings_81_cities.zip`
 
----
+```powershell
+New-Item -ItemType Directory -Force data\raw | Out-Null
+```
 
-## 🛠️ Tech Stack & Libraries
+Check the dataset license and attribution before sharing the data. The project code license does not cover the dataset.
 
-* **Core Language:** Python 3.10+
-* **Data Manipulation & Analysis:** Pandas, NumPy, SciPy
-* **Machine Learning:** Scikit-Learn, Joblib
-* **Data Visualization:** Matplotlib, Seaborn, Plotly
-* **Web Application UI:** Streamlit, OpenPyXL
+## Prepare the data and train the model
 
----
+Run these from the project folder, waiting for each step to finish:
 
-## 📂 Project Architecture & Rubric Coverage
+```powershell
+.\.venv\Scripts\python.exe -m src.eda
+.\.venv\Scripts\python.exe -m src.train
+```
 
-| Section / Stage | Description | Key Artifact / File |
-| :--- | :--- | :--- |
-| **Problem Statement & Dataset** | Housing market data ingestion & initial inspection | `data/` + `README.md` |
-| **Data Cleaning & Preprocessing** | Handling missing values, outliers, and scaling | `02_data_cleaning_and_eda.ipynb` |
-| **EDA & Statistical Analysis** | Correlation heatmaps, price distributions, and feature insights | `reports/figures/correlation_heatmap.png` |
-| **Model Development & Training** | Training regression models (Random Forest, XGBoost) | `03_model_training.ipynb` |
-| **Model Evaluation & Testing** | Residual analysis, RMSE, and $R^2$ performance metrics | `04_model_evaluation.ipynb` |
-| **Deployment / App** | Interactive Streamlit interface for property predictions | `app.py` |
+## Start the app
 
----
+```powershell
+.\.venv\Scripts\python.exe -m streamlit run app.py
+```
 
-## 🔄 Project Workflow / Run Order
+Open the local URL shown in the terminal. Press Ctrl+C there to stop the app.
 
-These notebooks and scripts should be run **in order** because each stage reads the output file of the previous stage:
-1. `01_data_exploration.ipynb` — Initial data profile and inspection.
-2. `02_data_cleaning_and_eda.ipynb` — Data cleansing and visual charts generation.
-3. `03_model_training.ipynb` — Training baseline and optimized ML models.
-4. `04_model_evaluation.ipynb` — Assessing model accuracy and generating performance plots.
+## Data limitations
 
----
-
-## 💻 Installation & Running Locally
-
-Follow these steps to set up and run the project on your local machine:
-
-1. **Clone the repository:**
-   ```bash
-   git clone [https://github.com/Sahelisau/EstateWise-AI.git](https://github.com/Sahelisau/EstateWise-AI.git)
-   cd EstateWise-AI
-�
-�<�!�-�-� �b�a�d�g�e� �u�p�d�a�t�e� �-�-�>�
-�
-�<�!�-�-� �o�v�e�r�v�i�e�w� �u�p�d�a�t�e� �-�-�>�
-�
-�<�!�-�-� �f�e�a�t�u�r�e�s� �u�p�d�a�t�e� �-�-�>�
-�
-�<�!�-�-� �a�r�c�h�i�t�e�c�t�u�r�e� �u�p�d�a�t�e� �-�-�>�
-�
-�<�!�-�-� �t�e�c�h� �s�t�a�c�k� �u�p�d�a�t�e� �-�-�>�
-�
-�<�!�-�-� �r�u�b�r�i�c� �u�p�d�a�t�e� �-�-�>�
-�
-�<�!�-�-� �w�o�r�k�f�l�o�w� �u�p�d�a�t�e� �-�-�>�
-�
-�<�!�-�-� �p�r�e�r�e�q�u�i�s�i�t�e�s� �u�p�d�a�t�e� �-�-�>�
-�
-�<�!�-�-� �v�e�n�v� �u�p�d�a�t�e� �-�-�>�
-�
-�<�!�-�-� �d�e�p�e�n�d�e�n�c�i�e�s� �u�p�d�a�t�e� �-�-�>�
-�
-�<�!�-�-� �a�p�p� �l�a�u�n�c�h� �u�p�d�a�t�e� �-�-�>�
-�
-�<�!�-�-� �f�u�t�u�r�e� �s�c�o�p�e� �u�p�d�a�t�e� �-�-�>�
-�
-�<�!�-�-� �a�c�k�n�o�w�l�e�d�g�m�e�n�t�s� �u�p�d�a�t�e� �-�-�>�
-�
-�<�!�-�-� �f�i�n�a�l� �p�o�l�i�s�h� �-�-�>�
-�
-�
-
-## Data and model scope
-
-EstateWise AI estimates historical flat asking prices from property details. The dataset is a cross sectional snapshot and does not include listing dates or repeated price observations over time. The model is a regression model, not a time series forecast. Its estimates are for exploration and should not be treated as current market values or professional valuations.
+The listings contain asking prices, not confirmed sale prices. They are a snapshot without listing dates, so the model estimates prices from property details. It does not forecast future prices, show current availability, or provide a professional property valuation.
